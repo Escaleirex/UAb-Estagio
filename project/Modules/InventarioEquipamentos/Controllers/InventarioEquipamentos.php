@@ -47,7 +47,7 @@ class InventarioEquipamentos extends BaseController
                 $db = \Config\Database::connect();
                 $db->table('equipamentos')->insert($validatedData); 
         
-                return redirect()->to('InventarioEquipamentos/list');
+                return redirect()->to('http://localhost:8080/InventarioEquipamentos/list');
             } catch (\Exception $e) {
                 return redirect()->back()->with('error', 'Database insertion failed: ' . $e->getMessage());
             }
