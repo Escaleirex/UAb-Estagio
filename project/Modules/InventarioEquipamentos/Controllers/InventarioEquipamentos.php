@@ -37,7 +37,7 @@ class InventarioEquipamentos extends BaseController
 
         $validation->setRules([
             'name' => 'required|min_length[5]|max_length[50]',
-            // 'date' => 'required|valid_date[Y-m-d H:i:s]', Não consegui meter isto a funcionar.
+            // 'date' => 'required|valid_date[Y-m-d H:i:s]',
         ]);
         
         if ($validation->withRequest($this->request)->run()) {
@@ -46,12 +46,6 @@ class InventarioEquipamentos extends BaseController
                 
                 $db = \Config\Database::connect();
                 $db->table('equipamentos')->insert($validatedData); 
-                $sql = "INSERT INTO equipamentos (name, description, date) VALUES (?, ?, ?)";
-                $db->query($sql, [
-                    $validatedData['name'],
-                    $validatedData['description'],
-                    $validatedData['date'],
-                ]);
         
                 return redirect()->to('InventarioEquipamentos/list');
             } catch (\Exception $e) {
