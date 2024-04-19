@@ -24,9 +24,9 @@
                 <li class="menu-toggle">
                     <button id="menuToggle">&#9776;</button>
                 </li>
-                <li class="menu-item hidden <?= url_is('/InventarioEquipamentos')?'active':'' ?>"><a href="<?= url_to('InventarioEquipamentos/index') ?>"><?=lang('InventarioEquipamentos.home')?></a></li>
-                <li class="menu-item hidden <?= url_is('/InventarioEquipamentos/list')?'active':'' ?>"><a href="<?= url_to('InventarioEquipamentos/list') ?>"><?=lang('InventarioEquipamentos.list')?></a></li>
-                <li class="menu-item hidden <?= url_is('/InventarioEquipamentos/register')?'active':'' ?>"><a href="<?= url_to('InventarioEquipamentos/register') ?>"><?=lang('InventarioEquipamentos.register')?></a></li>
+                <li class="menu-item hidden"><a href="/InventarioEquipamentos/index"><?=lang('InventarioEquipamentos.home')?></a></li>
+                <li class="menu-item hidden"><a href="/InventarioEquipamentos/list"><?=lang('InventarioEquipamentos.list')?></a></li>
+                <li class="menu-item hidden"><a href="/InventarioEquipamentos/register"><?=lang('InventarioEquipamentos.register')?></a></li>
             </ul>
         </div>
     </header>
