@@ -6,11 +6,23 @@ use CodeIgniter\Model;
 
 class EquipamentosModel extends Model
 {
-    const TABLE = 'equipamentos';
+    const TABLE = 'tbl_equipamentos';
     const FIELD_ID = 'id';
-    const FIELD_NOME = 'name';
-    const FIELD_DESCRICAO = 'description';
-    const FIELD_DATA = 'date';
+    const FIELD_ATIVO = 'ativo';
+    const FIELD_NI = 'ni';
+    const FIELD_SN = 'sn';
+    const FIELD_TIPO = 'tipo';
+    const FIELD_MARCA = 'marca';
+    const FIELD_MODELO = 'modelo';
+    const FIELD_LOCALIZACAO = 'localizacao';
+    const FIELD_PISO = 'piso';
+    const FIELD_SALA = 'sala';
+    const FIELD_SERVICO = 'servico';
+    const FIELD_DISPONIVEL = 'disponivel';
+    const FIELD_EMPRESTIMO_ID = 'emprestimo_id';
+    const FIELD_NOTAS = 'notas';
+    const FIELD_AQUISICAODTM = 'aquisicaoDtm';
+    const FIELD_UPDATEDDTM = 'updatedDtm';
 
     protected $table            = self::TABLE;
     protected $primaryKey       = self::FIELD_ID;
@@ -19,9 +31,21 @@ class EquipamentosModel extends Model
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
     protected $allowedFields    = [
-        self::FIELD_NOME,
-        self::FIELD_DESCRICAO,
-        self::FIELD_DATA,
+        self::FIELD_ATIVO,
+        self::FIELD_NI,
+        self::FIELD_SN,
+        self::FIELD_TIPO,
+        self::FIELD_MARCA,
+        self::FIELD_MODELO,
+        self::FIELD_LOCALIZACAO,
+        self::FIELD_PISO,
+        self::FIELD_SALA,
+        self::FIELD_SERVICO,
+        self::FIELD_DISPONIVEL,
+        self::FIELD_EMPRESTIMO_ID,
+        self::FIELD_NOTAS,
+        self::FIELD_AQUISICAODTM,
+        self::FIELD_UPDATEDDTM,
     ];
 
     protected bool $allowEmptyInserts = false;
