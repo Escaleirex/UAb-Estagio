@@ -16,16 +16,8 @@ class InventarioEquipamentos extends BaseController
     public function list(){
         $model = new EquipamentosModel();
         $equipamentos = $model->findAll();
-        return view('Modules\InventarioEquipamentos\Views\ViewInvEquiList', [
-            'equipamentos'=>$equipamentos,
-        ]);
-    }
-
-    public function register(){
-        $model = new EquipamentosModel();
-        $equipamentos = $model->findAll();
         $validation = \Config\Services::validation(); 
-        return view('Modules\InventarioEquipamentos\Views\ViewInvEquiRegister', [
+        return view('Modules\InventarioEquipamentos\Views\ViewInvEquiList', [
             'equipamentos'=>$equipamentos,
             'validation'=>$validation,
         ]);
@@ -36,29 +28,29 @@ class InventarioEquipamentos extends BaseController
         $validation = \Config\Services::validation();
 
         $validation->setRules([
-            'name' => 'required|min_length[5]|max_length[50]',
+            // 'name' => 'required|min_length[5]|max_length[50]',
             // 'date' => 'required|valid_date[Y-m-d H:i:s]',
         ]);
-        
+
         if ($validation->withRequest($this->request)->run()) {
-            try {
-                $validatedData = $this->request->getPost();
-                
-                $db = \Config\Database::connect();
-                $db->table('equipamentos')->insert($validatedData); 
-        
-                return redirect()->to('http://localhost:8080/InventarioEquipamentos/list');
-            } catch (\Exception $e) {
-                return redirect()->back()->with('error', 'Database insertion failed: ' . $e->getMessage());
-            }
-        } else {
-            $model = new EquipamentosModel();
-            $equipamentos = $model->findAll();
-            $validation = \Config\Services::validation(); 
-            return view('Modules\InventarioEquipamentos\Views\ViewInvEquiRegister', [
-                'equipamentos' => $equipamentos,
-                'validation' => $validation,
-            ]);
+            // try {
+            $validatedData = $this->request->getPost();
+            
+            $db = \Config\Database::connect();
+            $db->table('tbl_equipamentos')->insert($validatedData); 
+    
+            return redirect()->to('http://localhost:8080/InventarioEquipamentos/list');
+        //     } catch (\Exception $e) {
+        //         return redirect()->back()->with('error', 'Database insertion failed: ' . $e->getMessage());
+        //     }
+        // } else {
+        //     $model = new EquipamentosModel();
+        //     $equipamentos = $model->findAll();
+        //     $validation = \Config\Services::validation(); 
+        //     return view('Modules\InventarioEquipamentos\Views\ViewInvEquiList', [
+        //         'equipamentos' => $equipamentos,
+        //         'validation' => $validation,
+        //     ]);
         }        
     }
 }

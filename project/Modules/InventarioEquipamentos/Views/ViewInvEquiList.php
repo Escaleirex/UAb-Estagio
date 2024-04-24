@@ -1,6 +1,9 @@
 <?= view('Modules\InventarioEquipamentos\Views\templates\headerTemplate', [
     'title'=>lang('InventarioEquipamentos.list'),
-]) ?>
+]); 
+
+helper('form');
+?>
 
 <section>
     <!-- Modal para Adicionar -->
@@ -11,21 +14,24 @@
                     <h5 class="modal-title">Adicionar Equipamento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form>
+                <?php if(isset($validation)): ?>
+                    <?php echo $validation->listErrors(); ?>
+                <?php endif; ?>
+                <form id="addForm" role="form" method="post" action="submitForm">
                 <div class="p-3 mb-3">
                         <div class="row row-cols-4 mb-2">
                             <div class="col-auto">
                                 <label class="form-label mb-1">Estado</label>
                                 <div class="row row-cols-1">
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="ativo" id="stateRadioAdd" value="1">
+                                        <label class="form-check-label" for="stateRadioAdd">
                                             Ativo
                                         </label>
                                     </div>
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
+                                        <input class="form-check-input" type="radio" name="ativo" id="stateRadioAdd2" value="0" checked>
+                                        <label class="form-check-label" for="stateRadioAdd2">
                                             Inativo
                                         </label>
                                     </div>
@@ -33,15 +39,15 @@
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">NI</label>
-                                <input class="form-control" type="text" value="" aria-label="">
+                                <input class="form-control" name="ni" type="text" value="" aria-label="">
                             </div>
                             <div class="col-md-3">
                                 <label class="form-label">Número de Série</label>
-                                <input class="form-control" type="text" value="" aria-label="">
+                                <input class="form-control" name="sn" type="text" value="" aria-label="">
                             </div>
                             <div class="col-md-4">
                                 <label class="form-label">Tipo</label>
-                                <select class="form-select" aria-label="">
+                                <select class="form-select" name="tipo" aria-label="">
                                     <option selected>Portátil</option>
                                     <option value="1">Auscultadores	</option>
                                     <option value="2">Computador</option>
@@ -50,47 +56,62 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="row row-cols-2 mb-2">
-                            <div class="col-md-6">
+                        <div class="row row-cols-3 mb-2">
+                            <div class="col-md-4">
                                 <label class="form-label">Marca</label>
-                                <input class="form-control" type="text" value="" aria-label="">
+                                <input class="form-control" name="marca" type="text" value="" aria-label="">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label class="form-label">Modelo</label>
-                                <input class="form-control" type="text" value="" aria-label="">
+                                <input class="form-control" name="modelo" type="text" value="" aria-label="">
+                            </div>
+                            <div class="row row-cols-1">
+                                <label class="form-label mb-1">Disponivel</label>
+                                <div class="col">
+                                    <input class="form-check-input" type="radio" name="disponivel" id="stateRadioAdd" value="1">
+                                    <label class="form-check-label" for="stateRadioAdd">
+                                        Sim
+                                    </label>
+                                </div>
+                                <div class="col">
+                                    <input class="form-check-input" type="radio" name="disponivel" id="stateRadioAdd2" value="0" checked>
+                                    <label class="form-check-label" for="stateRadioAdd2">
+                                        Não
+                                    </label>
+                                </div>
                             </div>
                         </div>
                         <div class="row row-cols-3 mb-2">
                             <div class="col-4">
                                     <label class="form-label">Localização</label>
-                                    <input class="form-control" type="text" value="" aria-label="">
+                                    <input class="form-control" name="localizacao" type="text" value="" aria-label="">
                             </div>
                             <div class="col-4">
                                 <label class="form-label">Piso</label>
-                                <input class="form-control" type="text" value="" aria-label="">
+                                <input class="form-control" name="piso" type="text" value="" aria-label="">
                             </div>
                             <div class="col-4">
                                 <label class="form-label">Sala</label>
-                                <input class="form-control" type="text" value="" aria-label="">
+                                <input class="form-control" name="sala" type="text" value="" aria-label="">
                             </div>
                         </div>
                         <div class="row row-cols-1 mb-2">
                             <div class="col-12">
                                     <label class="form-label">Data de Aquisição</label>
-                                    <input class="form-control" type="datetime-local" value="">
+                                    <input class="form-control" name="aquisicaoDtm" type="datetime-local" value="">
                             </div>
                         </div>
                         <div>
                             <label for="exampleFormControlTextarea1" class="form-label">Nota</label>
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                            <textarea class="form-control" name="notas" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </div>
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
-                <form>
+                </form>
             </div>
         </div>
     </div>
@@ -114,14 +135,14 @@
                                 <label class="form-label mb-1">Estado</label>
                                 <div class="row row-cols-1">
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                                        <label class="form-check-label" for="flexRadioDefault1">
+                                        <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState1">
+                                        <label class="form-check-label" for="editRadioState1">
                                             Ativo
                                         </label>
                                     </div>
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
-                                        <label class="form-check-label" for="flexRadioDefault2">
+                                        <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState2" checked>
+                                        <label class="form-check-label" for="editRadioState2">
                                             Inativo
                                         </label>
                                     </div>
@@ -173,11 +194,11 @@
                         <div class="row row-cols-2 mb-2">
                             <div class="col-6">
                                     <label class="form-label">Data de Aquisição</label>
-                                    <input class="form-control" type="datetime-local" value="2018-07-22T00:00" aria-label="2018-07-22T00:00">
+                                    <input class="form-control" type="datetime-local" >
                             </div>
                             <div class="col-6">
                                 <label class="form-label">Ultimo Update</label>
-                                <input class="form-control" type="datetime-local" value="2018-07-22T00:00" aria-label="2018-07-22T00:00">
+                                <input class="form-control" type="datetime-local" disabled readonly>
                             </div>
                         </div>
                         <div>
@@ -190,7 +211,7 @@
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn btn-primary">Guardar</button>
                     </div>
-                <form>
+                </form>
             </div>
         </div>
     </div>
