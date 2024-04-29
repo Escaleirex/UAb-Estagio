@@ -46,7 +46,6 @@ class InventarioEquipamentos extends BaseController {
                 $db->table('tbl_equipamentos')->insert($validatedData); 
                 return redirect()->to('http://localhost:8080/InventarioEquipamentos/list');
             } catch (\Exception $e) {
-                // Add more specific error handling based on the exception message (e.g., validation errors)
                 return redirect()->back()->with('error', $e->getMessage());
             }
         } else {
@@ -66,60 +65,45 @@ class InventarioEquipamentos extends BaseController {
             $result = $query->getResult();
             return json_encode($result);
         } catch (\Exception $e) {
-            // Log the error or return a meaningful message
             return ['error' => 'Database query error: ' . $e->getMessage()];
         }
     }        
 
     public function updateItemForm(){
-        $validation = \Config\Services::validation();
+        $validation2 = \Config\Services::validation();
     
-        $validation->setRules([
-            'ativo' => 'required',
+        $validation2->setRules([
+            'id' => 'required',
+            // 'ativo' => 'required',
             'ni' => 'required',
-            'sn' => 'required',
+            // 'sn' => 'required',
             'tipo' => 'required',
             'marca' => 'required',
             'modelo' => 'required',
             'disponivel' => 'required',
             'localizacao' => 'required',
-            'piso' => 'required',
-            'sala' => 'required',
+            // 'piso' => 'required',
+            // 'sala' => 'required',
             // 'aquisicaoDtm' => 'required|valid_date[Y-m-d H:i:s]', // Adjust date format if needed
         ]);
     
-        if ($validation->withRequest($this->request)->run()) {
+        if ($validation2->withRequest($this->request)->run()) {
             try {
-                $validatedData = $this->request->getPost(['ativo', 'ni', 'sn', 'tipo', 'marca', 'modelo', 'disponivel', 'localizacao', 'piso', 'sala', 'aquisicaoDtm', 'notas']); // Only retrieve necessary fields
-                $db = \Config\Database::connect();
-                $db->query(
-                    'UPDATE tbl_equipamentos 
-                    SET ativo = '.$validatedData['ativo'].
-                    ', ni = '.$validatedData['ni'].
-                    ', sn = '.$validatedData['sn'].
-                    ', tipo = '.$validatedData['tipo'].
-                    ', marca = '.$validatedData['marca'].
-                    ', modelo = '.$validatedData['modelo'].
-                    ', disponivel = '.$validatedData['disponivel'].
-                    ', localizacao = '.$validatedData['localizacao'].
-                    ', piso = '.$validatedData['piso'].
-                    ', sala = '.$validatedData['sala'].
-                    ', aquisicaoDtm = '.$validatedData['aquisicaoDtm'].
-                    ', aquisicaoDtm = '.$validatedData['aquisicaoDtm'].
-                    ', notas = '.$validatedData['notas']. 
-                    ' WHERE id = '.$validatedData['id'].';'); 
-                return redirect()->to('http://localhost:8080/InventarioEquipamentos/list');
+                $validatedData2 = $this->request->getPost(['ativo', 'ni', 'sn', 'tipo', 'marca', 'modelo', 'disponivel', 'localizacao', 'piso', 'sala', 'aquisicaoDtm', 'notas', 'id']); // Include 'id' field
+                $model = new EquipamentosModel();
+                $model->update($validatedData2['id'], $validatedData2);
+                return redirect()->to('/InventarioEquipamentos/list');
             } catch (\Exception $e) {
-                // Add more specific error handling based on the exception message (e.g., validation errors)
                 return redirect()->back()->with('error', $e->getMessage());
             }
         } else {
+            die(print_r($validation2->getErrors(), true));
             $model = new EquipamentosModel();
             $equipamentos = $model->findAll();
             return view('Modules\InventarioEquipamentos\Views\ViewInvEquiList', [
                 'equipamentos' => $equipamentos,
-                'validation' => $validation,
+                'validation' => $validation2,
             ]);
         }
-    }    
+    }
 }

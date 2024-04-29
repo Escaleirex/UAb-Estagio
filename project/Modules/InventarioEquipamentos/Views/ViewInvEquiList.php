@@ -128,12 +128,15 @@ helper('form');
                     <h5 class="modal-title">Editar Equipamento</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
+                <?php if(isset($validation2)): ?>
+                    <?php echo $validation2->listErrors(); ?>
+                <?php endif; ?>
                 <form id="editForm" role="form" method="post" action="updateItemForm">
                 <div class="p-3 mb-3">
                         <div class="row row-cols-5 mb-2">
                             <div class="col-2">
                                 <label class="form-label">ID</label>
-                                <input class="form-control" id="editID" type="text" value="Mostrar ID Aqui" aria-label="Mostrar ID Aqui" name="id" disabled readonly>
+                                <input class="form-control" id="editID" type="hidden" value="Mostrar ID Aqui" aria-label="Mostrar ID Aqui" name="id" readonly>
                             </div>
                             <div class="col-auto">
                                 <label class="form-label">NI</label>
