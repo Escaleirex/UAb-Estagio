@@ -6,8 +6,7 @@ use App\Controllers\BaseController;
 use Modules\InventarioEquipamentos\Models\EquipamentosModel;
 use PhpParser\Node\Expr\AssignOp\Mod;
 
-class InventarioEquipamentos extends BaseController
-{
+class InventarioEquipamentos extends BaseController {
     public function index(){
         $model = new EquipamentosModel();
         return view('Modules\InventarioEquipamentos\Views\ViewInvEquiIndex');
@@ -23,8 +22,7 @@ class InventarioEquipamentos extends BaseController
         ]);
     }
 
-    public function submitForm()
-    {
+    public function submitForm() {
         $validation = \Config\Services::validation();
     
         $validation->setRules([
@@ -61,8 +59,19 @@ class InventarioEquipamentos extends BaseController
         }
     }    
 
-    public function updateItemForm()
-    {
+    public function getItemById($id){
+        try {
+            $db = \Config\Database::connect();
+            $query = $db->query('SELECT * FROM tbl_equipamentos WHERE id = ?', [$id]);
+            $result = $query->getResult();
+            return json_encode($result);
+        } catch (\Exception $e) {
+            // Log the error or return a meaningful message
+            return ['error' => 'Database query error: ' . $e->getMessage()];
+        }
+    }        
+
+    public function updateItemForm(){
         $validation = \Config\Services::validation();
     
         $validation->setRules([
@@ -83,7 +92,22 @@ class InventarioEquipamentos extends BaseController
             try {
                 $validatedData = $this->request->getPost(['ativo', 'ni', 'sn', 'tipo', 'marca', 'modelo', 'disponivel', 'localizacao', 'piso', 'sala', 'aquisicaoDtm', 'notas']); // Only retrieve necessary fields
                 $db = \Config\Database::connect();
-                $db->table('tbl_equipamentos')->insert($validatedData); 
+                $db->query(
+                    'UPDATE tbl_equipamentos 
+                    SET ativo = '.$validatedData['ativo'].
+                    ', ni = '.$validatedData['ni'].
+                    ', sn = '.$validatedData['sn'].
+                    ', tipo = '.$validatedData['tipo'].
+                    ', marca = '.$validatedData['marca'].
+                    ', modelo = '.$validatedData['modelo'].
+                    ', disponivel = '.$validatedData['disponivel'].
+                    ', localizacao = '.$validatedData['localizacao'].
+                    ', piso = '.$validatedData['piso'].
+                    ', sala = '.$validatedData['sala'].
+                    ', aquisicaoDtm = '.$validatedData['aquisicaoDtm'].
+                    ', aquisicaoDtm = '.$validatedData['aquisicaoDtm'].
+                    ', notas = '.$validatedData['notas']. 
+                    ' WHERE id = '.$validatedData['id'].';'); 
                 return redirect()->to('http://localhost:8080/InventarioEquipamentos/list');
             } catch (\Exception $e) {
                 // Add more specific error handling based on the exception message (e.g., validation errors)
@@ -98,5 +122,4 @@ class InventarioEquipamentos extends BaseController
             ]);
         }
     }    
-    
 }

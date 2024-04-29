@@ -34,7 +34,6 @@
                 </li>
                 <li class="menu-item hidden"><a href="/InventarioEquipamentos/index"><?=lang('InventarioEquipamentos.home')?></a></li>
                 <li class="menu-item hidden"><a href="/InventarioEquipamentos/list"><?=lang('InventarioEquipamentos.list')?></a></li>
-                <li class="menu-item hidden"><a href="/InventarioEquipamentos/register"><?=lang('InventarioEquipamentos.register')?></a></li>
             </ul>
         </div>
     </header>

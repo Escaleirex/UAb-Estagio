@@ -133,19 +133,19 @@ helper('form');
                         <div class="row row-cols-5 mb-2">
                             <div class="col-2">
                                 <label class="form-label">ID</label>
-                                <input class="form-control" id="editID" type="text" value="Mostrar ID Aqui" aria-label="Mostrar ID Aqui" disabled readonly>
+                                <input class="form-control" id="editID" type="text" value="Mostrar ID Aqui" aria-label="Mostrar ID Aqui" name="id" disabled readonly>
                             </div>
                             <div class="col-auto">
                                 <label class="form-label">NI</label>
-                                <input class="form-control" type="text" id="editNI" value="NI Aqui" aria-label="NI Aqui">
+                                <input class="form-control" type="text" id="editNI" value="NI Aqui" name="ni" aria-label="NI Aqui">
                             </div>
                             <div class="col-auto">
                                 <label class="form-label">Número de Série</label>
-                                <input class="form-control" type="text" id="editSN" value="Número de Série Aqui" aria-label="Número de Série Aqui">
+                                <input class="form-control" type="text" id="editSN" value="Número de Série Aqui" name="sn" aria-label="Número de Série Aqui">
                             </div>
                             <div class="col-md-3 me-2">
                                 <label class="form-label">Tipo</label>
-                                <select class="form-select" id="editTipo" aria-label="Tipo">
+                                <select class="form-select" id="editTipo" aria-label="Tipo" name="tipo">
                                     <option value="1" selected>Portátil</option>
                                     <option value="2">Auscultadores</option>
                                     <option value="3">Computador</option>
@@ -157,13 +157,13 @@ helper('form');
                                 <label class="form-label mb-1">Estado</label>
                                 <div class="row row-cols-1">
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState1" value="1" checked>
+                                        <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState1" name="ativo" value="1" checked>
                                         <label class="form-check-label" for="editRadioState1">
                                             Ativo
                                         </label>
                                     </div>
                                     <div class="col">
-                                        <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState2" value="0">
+                                        <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState2" name="ativo" value="0">
                                         <label class="form-check-label" for="editRadioState2">
                                             Inativo
                                         </label>
@@ -174,22 +174,22 @@ helper('form');
                         <div class="row row-cols-3 mb-2">
                             <div class="col-md-5">
                                 <label class="form-label">Marca</label>
-                                <input class="form-control" type="text" value="Mostrar Marca Aqui" id="editMarca" aria-label="Mostrar Marca Aqui">
+                                <input class="form-control" type="text" value="Mostrar Marca Aqui" id="editMarca" name="marca" aria-label="Mostrar Marca Aqui">
                             </div>
                             <div class="col-md-5">
                                 <label class="form-label">Modelo</label>
-                                <input class="form-control" type="text" value="Mostrar Modelo Aqui" id="editModelo" aria-label="Mostrar Modelo Aqui">
+                                <input class="form-control" type="text" value="Mostrar Modelo Aqui" id="editModelo" name="modelo" aria-label="Mostrar Modelo Aqui">
                             </div>
                             <div class="row row-cols-1 col-md-2">
                                 <label class="form-label mb-1">Disponivel</label>
                                 <div class="col">
-                                    <input class="form-check-input" type="radio" name="disponivel" id="stateRadioEdit1" value="1">
+                                    <input class="form-check-input" type="radio" name="disponivel" id="stateRadioEdit1" name="disponivel" value="1">
                                     <label class="form-check-label" for="stateRadioEdit1">
                                         Sim
                                     </label>
                                 </div>
                                 <div class="col">
-                                    <input class="form-check-input" type="radio" name="disponivel" id="stateRadioEdit2" value="0" checked>
+                                    <input class="form-check-input" type="radio" name="disponivel" id="stateRadioEdit2" name="disponivel" value="0" checked>
                                     <label class="form-check-label" for="stateRadioEdit2">
                                         Não
                                     </label>
@@ -199,40 +199,40 @@ helper('form');
                         <div class="row row-cols-3 mb-2">
                             <div class="col-4">
                                     <label class="form-label">Localização</label>
-                                    <input class="form-control" type="text" value="Mostrar Localização Aqui" id="editLocalizacao" aria-label="Mostrar Localização Aqui">
+                                    <input class="form-control" type="text" value="Mostrar Localização Aqui" id="editLocalizacao" name="localizacao" aria-label="Mostrar Localização Aqui">
                             </div>
                             <div class="col-4">
                                 <label class="form-label">Piso</label>
-                                <input class="form-control" type="text" value="Mostrar Piso Aqui" id="editPiso" aria-label="Mostrar Piso Aqui">
+                                <input class="form-control" type="text" value="Mostrar Piso Aqui" id="editPiso" name="piso" aria-label="Mostrar Piso Aqui">
                             </div>
                             <div class="col-4">
                                 <label class="form-label">Sala</label>
-                                <input class="form-control" type="text" value="Mostrar Sala Aqui" id="editSala" aria-label="Mostrar Sala Aqui">
+                                <input class="form-control" type="text" value="Mostrar Sala Aqui" id="editSala" name="sala" aria-label="Mostrar Sala Aqui">
                             </div>
                         </div>
                         <div class="row row-cols-2 mb-2">
                             <div class="col-6">
                                 <label class="form-label">Serviço</label>
-                                <input class="form-control" id="editServico" name="servico" type="text" value="" aria-label="">
+                                <input class="form-control" id="editServico" name="servico" name="servico" type="text" value="" aria-label="">
                             </div>
                             <div class="col-3">
-                                    <label class="form-label">Data de Aquisição</label>
-                                    <input class="form-control" id="editAquisicaoDtm" type="datetime-local" >
+                                <label class="form-label">Data de Aquisição</label>
+                                <input class="form-control" id="editAquisicaoDtm" name="aquisicaoDtm" type="datetime-local" >
                             </div>
                             <div class="col-3">
                                 <label class="form-label">Ultimo Update</label>
-                                <input class="form-control" id="editUpdatedDtm" type="datetime-local" disabled readonly>
+                                <input class="form-control" id="editUpdatedDtm" name="updatedDtm" type="datetime-local" disabled readonly>
                             </div>
                         </div>
                         <div>
                             <label for="exampleFormControlTextarea1" class="form-label">Nota</label>
-                            <textarea class="form-control" id="editNotas" rows="3"></textarea>
+                            <textarea class="form-control" id="editNotas" name="notas" rows="3"></textarea>
                         </div>
                     </div>
                     
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
                     </div>
                 </form>
             </div>
@@ -298,24 +298,7 @@ helper('form');
                                         <div class="col-md-10">
                                             <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" 
                                                 onclick="
-                                                    getEditData(this, 
-                                                        '<?php echo $equipamentos['id']?>', 
-                                                        '<?php echo $equipamentos['ativo']?>', 
-                                                        '<?php echo $equipamentos['ni']?>', 
-                                                        '<?php echo $equipamentos['sn']?>', 
-                                                        '<?php echo $equipamentos['tipo']?>', 
-                                                        '<?php echo $equipamentos['marca']?>', 
-                                                        '<?php echo $equipamentos['modelo']?>', 
-                                                        '<?php echo $equipamentos['localizacao']?>', 
-                                                        '<?php echo $equipamentos['piso']?>', 
-                                                        '<?php echo $equipamentos['sala']?>', 
-                                                        '<?php echo $equipamentos['servico']?>', 
-                                                        '<?php echo $equipamentos['disponivel']?>', 
-                                                        '<?php echo $equipamentos['emprestimo_id']?>', 
-                                                        '<?php echo $equipamentos['notas']?>', 
-                                                        '<?php echo $equipamentos['aquisicaoDtm']?>', 
-                                                        '<?php echo $equipamentos['updatedDtm']?>', 
-                                                    );">
+                                                    getEditData(this, '<?php echo $equipamentos['id']?>');">
                                             <i class="bi bi-pencil-fill"></i></button>
                                         </div> 
                                     </div>
@@ -353,113 +336,134 @@ helper('form');
     });
 
     function convertDateFormat(inputDate) {
-        // Split the date and time parts
         var parts = inputDate.split(" ");
         var datePart = parts[0]; // "0000-00-00"
         var timePart = parts[1]; // "00:00:00"
-
-        // Split the date part into year, month, and day
         var dateParts = datePart.split("-");
         var year = dateParts[0];
         var month = dateParts[1];
         var day = dateParts[2];
-
-        // Construct the new date string in the required format
         var newDateString = year + "-" + month + "-" + day + "T" + timePart;
 
         return newDateString;
     }
 
-    function getEditData(e, id, ativo, ni, sn, tipo, marca, modelo, localizacao, piso, sala, servico, disponivel, emprestimo_id, notas, aquisicaoDtm, updatedDtm) {
-        console.log(id, ativo, ni, sn, tipo, marca, modelo, localizacao, piso, sala, servico, disponivel, emprestimo_id, notas, aquisicaoDtm, updatedDtm);
+    const getItemById = async (id) => {
+        try {
+            const response = await fetch(`/InventarioEquipamentos/getItemById/${id}`);
+            if (!response.ok) {
+                throw new Error('Failed to fetch item');
+            }
+            const data = await response.json();
+            if (!data) {
+                throw new Error('Empty response or invalid JSON');
+            }
+            console.log(response, data);
+            return data;
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
+
+    const getEditData = async (e, id) => {
         document.getElementById("editID").value = id;
-        
-        if(ativo == '1') {
+        const itemRequest = await getItemById(id);
+        const item = itemRequest[0];
+        console.log(item);
+
+        if(item.ativo == '1' || null) {
             document.getElementById("editRadioState1").checked = true;
         } else {
             document.getElementById("editRadioState2").checked = true;
         }
 
-        if(ni !== '') {
-            document.getElementById("editNI").value = ni;
+        if(item.ni !== '' || null) {
+            document.getElementById("editNI").value = item.ni;
         } else {
             document.getElementById("editNI").value = "Sem Valor";
         }
 
-        if(sn !== '') {
-            document.getElementById("editSN").value = sn;
+        if(item.sn !== '' || null) {
+            document.getElementById("editSN").value = item.sn;
         } else {
             document.getElementById("editSN").value = "Sem Valor";
         }
 
-        if(tipo !== '') {
-            if(tipo=='Portátil'){
+        if(item.tipo !== '' || null) {
+            if(item.tipo=='Portátil'){
                 document.getElementById("editTipo").value = '1';
-            } else if(tipo=='Auscultadores'){
+            } else if(item.tipo=='Auscultadores'){
                 document.getElementById("editTipo").value = '2';
-            } else if(tipo=='Computador'){
+            } else if(item.tipo=='Computador'){
                 document.getElementById("editTipo").value = '3';
-            } else if(tipo=='Monitor'){
+            } else if(item.tipo=='Monitor'){
                 document.getElementById("editTipo").value = '4';
-            } else if(tipo=='Webcam'){
+            } else if(item.tipo=='Webcam'){
                 document.getElementById("editTipo").value = '5';
             }
         } else {
             document.getElementById("editTipo").value = '';
         }
         
-        if(marca !== '') {
-            document.getElementById("editMarca").value = marca;
+        if(item.marca !== '' || null) {
+            document.getElementById("editMarca").value = item.marca;
         } else {
             document.getElementById("editMarca").value = "Sem Valor";
         }
         
-        if(modelo !== '') {
-            document.getElementById("editModelo").value = modelo;
+        if(item.modelo !== '' || null) {
+            document.getElementById("editModelo").value = item.modelo;
         } else {
             document.getElementById("editModelo").value = "Sem Valor";
         }
 
-        if(localizacao !== '') {
-            document.getElementById("editLocalizacao").value = localizacao;
+        if(item.localizacao !== '' || null) {
+            document.getElementById("editLocalizacao").value = item.localizacao;
         } else {
             document.getElementById("editLocalizacao").value = "Sem Valor";
         }
 
-        if(piso !== '') {
-            document.getElementById("editPiso").value = piso;
+        if(item.piso !== '' || null) {
+            document.getElementById("editPiso").value = item.piso;
         } else {
             document.getElementById("editPiso").value = "Sem Valor";
         }
 
-        if(sala !== '') {
-            document.getElementById("editSala").value = sala;
+        if(item.sala !== '' || null) {
+            document.getElementById("editSala").value = item.sala;
         } else {
             document.getElementById("editSala").value = "Sem Valor";
         }
 
-        if(servico !== '') {
-            document.getElementById("editServico").value = servico;
+        if(item.servico !== '' || null) {
+            document.getElementById("editServico").value = item.servico;
         } else {
             document.getElementById("editServico").value = "Sem Valor";
         }
 
-        if(disponivel == '1') {
+        if(item.disponivel == '1') {
             document.getElementById("stateRadioEdit1").checked = true;
         } else {
             document.getElementById("stateRadioEdit2").checked = true;
         }
 
-        if(notas !== '') {
-            document.getElementById("editNotas").value = notas;
+        if(item.notas !== '' || null) {
+            document.getElementById("editNotas").value = item.notas;
         } else {
             document.getElementById("editNotas").value = "Sem Valor";
         }
 
-        // // document.getElementById("editDisponivel").value = disponivel;
         // // document.getElementById("editEmprestimoID").value = "My value";
-        document.getElementById("editAquisicaoDtm").value = convertDateFormat(aquisicaoDtm);
-        document.getElementById("editUpdatedDtm").value = convertDateFormat(updatedDtm);
+        document.getElementById("editAquisicaoDtm").value = convertDateFormat(item.aquisicaoDtm);
+
+        if(item.updatedDtm !== '' || null) {
+            document.getElementById("editUpdatedDtm").value = convertDateFormat(item.updatedDtm);
+        }
+        else {
+            document.getElementById("editUpdatedDtm").placeholder = 'No date available'
+        }
     }
 </script>
 
