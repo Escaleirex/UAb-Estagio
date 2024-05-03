@@ -8,7 +8,7 @@ helper('form');
 <section>
     <!-- Modal para Adicionar -->
     <div class="modal modal-xl" tabindex="-1" id="addModal">
-        <div class="modal-dialog modal-dialog-centered ">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content ">
                 <div class="modal-header">
                     <h5 class="modal-title">Adicionar Equipamento</h5>
@@ -31,11 +31,11 @@ helper('form');
                             <div class="col-md-4">
                                 <label class="form-label">Tipo</label>
                                 <select class="form-select" name="tipo" aria-label="">
-                                    <option selected>Portátil</option>
-                                    <option value="1">Auscultadores	</option>
-                                    <option value="2">Computador</option>
-                                    <option value="3">Monitor</option>
-                                    <option value="4">Webcam</option>
+                                    <option selected value="Portátil">Portátil</option>
+                                    <option value="Auscultadores">Auscultadores	</option>
+                                    <option value="Computador">Computador</option>
+                                    <option value="Monitor">Monitor</option>
+                                    <option value="Webcam">Webcam</option>
                                 </select>
                             </div>
                             <div class="col-auto">
@@ -243,90 +243,61 @@ helper('form');
     </div>
 
     <table class="table table-striped" id="tbl">
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" > Adicionar </button>
         <thead>
             <tr>
-                <th scope="col"><?=lang('InventarioEquipamentos.id')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.ativo')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.ni')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.sn')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.tipo')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.marca')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.modelo')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.localizacao')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.piso')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.sala')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.servico')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.disponivel')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.emprestimo_id')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.notas')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.aquisicaoDtm')?></th>
-                <th scope="col"><?=lang('InventarioEquipamentos.updatedDtm')?></th>
-                <th scope="col">Actions</th>
+                <th><?=lang('InventarioEquipamentos.id')?></th>
+                <th><?=lang('InventarioEquipamentos.ativo')?></th>
+                <th><?=lang('InventarioEquipamentos.ni')?></th>
+                <th><?=lang('InventarioEquipamentos.sn')?></th>
+                <th><?=lang('InventarioEquipamentos.tipo')?></th>
+                <th><?=lang('InventarioEquipamentos.marca')?></th>
+                <th><?=lang('InventarioEquipamentos.modelo')?></th>
+                <th><?=lang('InventarioEquipamentos.localizacao')?></th>
+                <th><?=lang('InventarioEquipamentos.piso')?></th>
+                <th><?=lang('InventarioEquipamentos.sala')?></th>
+                <th><?=lang('InventarioEquipamentos.servico')?></th>
+                <th><?=lang('InventarioEquipamentos.disponivel')?></th>
+                <th><?=lang('InventarioEquipamentos.emprestimo_id')?></th>
+                <th><?=lang('InventarioEquipamentos.notas')?></th>
+                <th><?=lang('InventarioEquipamentos.aquisicaoDtm')?></th>
+                <th><?=lang('InventarioEquipamentos.updatedDtm')?></th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            <?php
-                if(!empty($equipamentos??null)):
-                    $i = 0;
-                    foreach($equipamentos as $equipamentos):?>
-                        <tr>
-                            <th scope="row"><?= $equipamentos['id']?></th>
-                            <?php if($equipamentos['ativo'] == 1):?>
-                                <td><?=lang('InventarioEquipamentos.active')?></td>
-                            <?php else: ?>
-                                <td><?=lang('InventarioEquipamentos.inactive')?></td>
-                            <?php endif; ?>
-                            <td><?= $equipamentos['ni']?></td>
-                            <td><?= $equipamentos['sn']?></td>
-                            <td><?= $equipamentos['tipo']?></td>
-                            <td><?= $equipamentos['marca']?></td>
-                            <td><?= $equipamentos['modelo']?></td>
-                            <td><?= $equipamentos['localizacao']?></td>
-                            <td><?= $equipamentos['piso']?></td>
-                            <td><?= $equipamentos['sala']?></td>
-                            <td><?= $equipamentos['servico']?></td>
-                            <?php if($equipamentos['disponivel'] == 1):?>
-                                <td><?=lang('InventarioEquipamentos.yes')?></td>
-                            <?php else: ?>
-                                <td><?=lang('InventarioEquipamentos.no')?></td>
-                            <?php endif; ?>
-                            <td><?= $equipamentos['emprestimo_id']?></td>
-                            <td><?= $equipamentos['notas']?></td>
-                            <td><?= $equipamentos['aquisicaoDtm']?></td>
-                            <td><?= $equipamentos['updatedDtm']?></td>
-                            <td>
-                                <div class="row">
-                                    <div class="col-md-5">
-                                        <div class="col-md-10">
-                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" 
-                                                onclick="
-                                                    getEditData(this, '<?php echo $equipamentos['id']?>');">
-                                            <i class="bi bi-pencil-fill"></i></button>
-                                        </div> 
-                                    </div>
-                                    <div class="col-md-1">
-                                        <div class="col-md-10">
-                                            <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash-fill"></i></button>
-                                        </div> 
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-            <?php   $i++;
-                    endforeach;
-                else:?>
-                    <tr>
-                        <td colspan='4'><?=lang('InventarioEquipamentos.no-data')?></td>
-                    </tr>
-        <?php   endif;?>
+            <tr>
+                <td>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="col-md-10">
+                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" 
+                                    onclick="
+                                        getEditData(this);">
+                                <i class="bi bi-pencil-fill"></i></button>
+                            </div> 
+                        </div>
+                        <div class="col-md-1">
+                            <div class="col-md-10">
+                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash-fill"></i></button>
+                            </div> 
+                        </div>
+                    </div>
+                </td>
+            </tr>
         </tbody>
+        <tfoot>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" > Adicionar </button>
+        </tfoot>
     </table>
 </section>
 
 <script>
     document.addEventListener("DOMContentLoaded", function(){
         let tbl = new DataTable('#tbl', {
+            ajax: {
+                url: '/api/IE/getData',
+                dataSrc: 'data',
+            },
             scrollX: true,
             layout: {
                 bottomEnd: {
@@ -334,8 +305,27 @@ helper('form');
                         boundaryNumbers: true
                     }
                 }
-            }
+            },
+            // columns: [
+            //     { "data" : 'id' },
+            //     { "data" : 'ativo' },
+            //     { "data" : 'ni' },
+            //     { "data" : 'sn' },
+            //     { "data" : 'tipo' },
+            //     { "data" : 'marca' },
+            //     { "data" : 'modelo' },
+            //     { "data" : 'localizacao' },
+            //     { "data" : 'piso' },
+            //     { "data" : 'sala' },
+            //     { "data" : 'servico' },
+            //     { "data" : 'disponivel' },
+            //     { "data" : 'emprestimo_id' },
+            //     { "data" : 'notas' },
+            //     { "data" : 'aquisicaoDtm' },
+            //     { "data" : 'updatedDtm' },
+            // ],
         });
+        console.log(tbl);
     });
 
     function convertDateFormat(inputDate) {
@@ -353,7 +343,7 @@ helper('form');
 
     const getItemById = async (id) => {
         try {
-            const response = await fetch(`/InventarioEquipamentos/getItemById/${id}`);
+            const response = await fetch(`/api/IE/getItemById/${id}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch item');
             }
