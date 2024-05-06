@@ -6,12 +6,33 @@ helper('form');
 ?>
 
 <section>
+    <!-- Modal para Remover -->
+    <div class="modal fade" id="deleteModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="deleteModalLabel"><?=lang('InventarioEquipamentos.remove')?></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="deleteForm" role="form" method="post" action="deleteForm">
+                    <div class="modal-body">
+                        <input type="hidden" id="deleteModalID" name="id">
+                        <?=lang('InventarioEquipamentos.areyousureremove')?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?=lang('InventarioEquipamentos.cancel')?></button>
+                        <button type="submit" class="btn btn-primary"><?=lang('InventarioEquipamentos.confirm')?></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
     <!-- Modal para Adicionar -->
     <div class="modal modal-xl" tabindex="-1" id="addModal">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered ">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h5 class="modal-title">Adicionar Equipamento</h5>
+                    <h5 class="modal-title"><?=lang('InventarioEquipamentos.register-device')?></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <?php if(isset($validation)): ?>
@@ -21,36 +42,36 @@ helper('form');
                 <div class="p-3 mb-3">
                         <div class="row row-cols-4 mb-2">
                             <div class="col-md-3">
-                                <label class="form-label">NI</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.ni')?></label>
                                 <input class="form-control" name="ni" type="text" value="" aria-label="">
                             </div>
                             <div class="col-md-3">
-                                <label class="form-label">Número de Série</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.sn')?></label>
                                 <input class="form-control" name="sn" type="text" value="" aria-label="">
                             </div>
                             <div class="col-md-4">
-                                <label class="form-label">Tipo</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.tipo')?></label>
                                 <select class="form-select" name="tipo" aria-label="">
-                                    <option selected value="Portátil">Portátil</option>
-                                    <option value="Auscultadores">Auscultadores	</option>
-                                    <option value="Computador">Computador</option>
-                                    <option value="Monitor">Monitor</option>
-                                    <option value="Webcam">Webcam</option>
+                                    <option value="Portátil" selected><?=lang('InventarioEquipamentos.portatil')?></option>
+                                    <option value="Auscultadores"><?=lang('InventarioEquipamentos.auscultadores')?></option>
+                                    <option value="Computador"><?=lang('InventarioEquipamentos.desktop')?></option>
+                                    <option value="Monitor"><?=lang('InventarioEquipamentos.monitor')?></option>
+                                    <option value="Webcam"><?=lang('InventarioEquipamentos.webcam')?></option>
                                 </select>
                             </div>
                             <div class="col-auto">
-                                <label class="form-label mb-1">Estado</label>
+                                <label class="form-label mb-1"><?=lang('InventarioEquipamentos.ativo')?></label>
                                 <div class="row row-cols-1">
                                     <div class="col">
                                         <input class="form-check-input" type="radio" name="ativo" id="stateRadioAdd" value="1">
                                         <label class="form-check-label" for="stateRadioAdd">
-                                            Ativo
+                                            <?=lang('InventarioEquipamentos.active')?>
                                         </label>
                                     </div>
                                     <div class="col">
                                         <input class="form-check-input" type="radio" name="ativo" id="stateRadioAdd2" value="0" checked>
                                         <label class="form-check-label" for="stateRadioAdd2">
-                                            Inativo
+                                            <?=lang('InventarioEquipamentos.inactive')?>
                                         </label>
                                     </div>
                                 </div>
@@ -58,62 +79,62 @@ helper('form');
                         </div>
                         <div class="row row-cols-3 mb-2">
                             <div class="col-md-5">
-                                <label class="form-label">Marca</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.marca')?></label>
                                 <input class="form-control" name="marca" type="text" value="" aria-label="">
                             </div>
                             <div class="col-md-5">
-                                <label class="form-label">Modelo</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.modelo')?></label>
                                 <input class="form-control" name="modelo" type="text" value="" aria-label="">
                             </div>
                             <div class="row row-cols-1 col-md-2">
-                                <label class="form-label mb-1">Disponivel</label>
+                                <label class="form-label mb-1"><?=lang('InventarioEquipamentos.disponivel')?></label>
                                 <div class="col">
                                     <input class="form-check-input" type="radio" name="disponivel" id="stateRadioAdd" value="1">
                                     <label class="form-check-label" for="stateRadioAdd">
-                                        Sim
+                                        <?=lang('InventarioEquipamentos.yes')?>
                                     </label>
                                 </div>
                                 <div class="col">
                                     <input class="form-check-input" type="radio" name="disponivel" id="stateRadioAdd2" value="0" checked>
                                     <label class="form-check-label" for="stateRadioAdd2">
-                                        Não
+                                        <?=lang('InventarioEquipamentos.no')?>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-cols-3 mb-2">
                             <div class="col-4">
-                                    <label class="form-label">Localização</label>
+                                    <label class="form-label"><?=lang('InventarioEquipamentos.localizacao')?></label>
                                     <input class="form-control" name="localizacao" type="text" value="" aria-label="">
                             </div>
                             <div class="col-4">
-                                <label class="form-label">Piso</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.piso')?></label>
                                 <input class="form-control" name="piso" type="text" value="" aria-label="">
                             </div>
                             <div class="col-4">
-                                <label class="form-label">Sala</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.sala')?></label>
                                 <input class="form-control" name="sala" type="text" value="" aria-label="">
                             </div>
                         </div>
                         <div class="row row-cols-1 mb-2">
                             <div class="col-6">
-                                <label class="form-label">Serviço</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.servico')?></label>
                                 <input class="form-control" name="servico" type="text" value="" aria-label="">
                             </div>
                             <div class="col-6">
-                                <label class="form-label">Data de Aquisição</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.aquisicaoDtm')?></label>
                                 <input class="form-control" name="aquisicaoDtm" type="datetime-local" value="">
                             </div>
                         </div>
                         <div>
-                            <label for="exampleFormControlTextarea1" class="form-label">Nota</label>
+                            <label for="exampleFormControlTextarea1" class="form-label"><?=lang('InventarioEquipamentos.notas')?></label>
                             <textarea class="form-control" name="notas" id="exampleFormControlTextarea1" rows="3"></textarea>
                         </div>
                     </div>
                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?=lang('InventarioEquipamentos.cancel')?></button>
+                        <button type="submit" class="btn btn-primary"><?=lang('InventarioEquipamentos.save')?></button>
                     </div>
                 </form>
             </div>
@@ -125,50 +146,47 @@ helper('form');
         <div class="modal-dialog modal-dialog-centered ">
             <div class="modal-content ">
                 <div class="modal-header">
-                    <h5 class="modal-title">Editar Equipamento</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title"><?=lang('InventarioEquipamentos.edititem')?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?=lang('InventarioEquipamentos.close')?>"></button>
                 </div>
                 <?php if(isset($validation2)): ?>
                     <?php echo $validation2->listErrors(); ?>
                 <?php endif; ?>
                 <form id="editForm" role="form" method="post" action="updateItemForm">
                 <div class="p-3 mb-3">
-                        <div class="row row-cols-5 mb-2">
-                            <div class="col-2">
-                                <label class="form-label">ID</label>
-                                <input class="form-control" id="editID" type="hidden" value="Mostrar ID Aqui" aria-label="Mostrar ID Aqui" name="id" readonly>
+                        <div class="row row-cols-4 mb-2">
+                            <input class="form-control" id="editID" type="hidden" value="" aria-label="" name="id">
+                            <div class="col-md-3">
+                                <label class="form-label"><?=lang('InventarioEquipamentos.ni')?></label>
+                                <input class="form-control" type="text" id="editNI" value="" name="ni" aria-label="">
                             </div>
-                            <div class="col-auto">
-                                <label class="form-label">NI</label>
-                                <input class="form-control" type="text" id="editNI" value="NI Aqui" name="ni" aria-label="NI Aqui">
+                            <div class="col-md-3">
+                                <label class="form-label"><?=lang('InventarioEquipamentos.sn')?></label>
+                                <input class="form-control" type="text" id="editSN" value="" name="sn" aria-label="">
                             </div>
-                            <div class="col-auto">
-                                <label class="form-label">Número de Série</label>
-                                <input class="form-control" type="text" id="editSN" value="Número de Série Aqui" name="sn" aria-label="Número de Série Aqui">
-                            </div>
-                            <div class="col-md-3 me-2">
-                                <label class="form-label">Tipo</label>
-                                <select class="form-select" id="editTipo" aria-label="Tipo" name="tipo">
-                                    <option value="1" selected>Portátil</option>
-                                    <option value="2">Auscultadores</option>
-                                    <option value="3">Computador</option>
-                                    <option value="4">Monitor</option>
-                                    <option value="5">Webcam</option>
+                            <div class="col-md-3">
+                                <label class="form-label"><?=lang('InventarioEquipamentos.tipo')?></label>
+                                <select class="form-select" id="editTipo" aria-label="" name="tipo">
+                                    <option value="Portátil" selected><?=lang('InventarioEquipamentos.portatil')?></option>
+                                    <option value="Auscultadores"><?=lang('InventarioEquipamentos.auscultadores')?></option>
+                                    <option value="Computador"><?=lang('InventarioEquipamentos.computador')?></option>
+                                    <option value="Monitor"><?=lang('InventarioEquipamentos.monitor')?></option>
+                                    <option value="Webcam"><?=lang('InventarioEquipamentos.webcam')?></option>
                                 </select>
                             </div>
-                            <div class="col col-md-2">
-                                <label class="form-label mb-1">Estado</label>
+                            <div class="col-md-3">
+                                <label class="form-label mb-1"><?=lang('InventarioEquipamentos.ativo')?></label>
                                 <div class="row row-cols-1">
                                     <div class="col">
                                         <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState1" name="ativo" value="1" checked>
                                         <label class="form-check-label" for="editRadioState1">
-                                            Ativo
+                                            <?=lang('InventarioEquipamentos.active')?>
                                         </label>
                                     </div>
                                     <div class="col">
                                         <input class="form-check-input" type="radio" name="editRadioState" id="editRadioState2" name="ativo" value="0">
                                         <label class="form-check-label" for="editRadioState2">
-                                            Inativo
+                                            <?=lang('InventarioEquipamentos.inactive')?>
                                         </label>
                                     </div>
                                 </div>
@@ -176,66 +194,66 @@ helper('form');
                         </div>
                         <div class="row row-cols-3 mb-2">
                             <div class="col-md-5">
-                                <label class="form-label">Marca</label>
-                                <input class="form-control" type="text" value="Mostrar Marca Aqui" id="editMarca" name="marca" aria-label="Mostrar Marca Aqui">
+                                <label class="form-label"><?=lang('InventarioEquipamentos.marca')?></label>
+                                <input class="form-control" type="text" value="" id="editMarca" name="marca" aria-label="">
                             </div>
                             <div class="col-md-5">
-                                <label class="form-label">Modelo</label>
-                                <input class="form-control" type="text" value="Mostrar Modelo Aqui" id="editModelo" name="modelo" aria-label="Mostrar Modelo Aqui">
+                                <label class="form-label"><?=lang('InventarioEquipamentos.modelo')?></label>
+                                <input class="form-control" type="text" value="" id="editModelo" name="modelo" aria-label="">
                             </div>
                             <div class="row row-cols-1 col-md-2">
-                                <label class="form-label mb-1">Disponivel</label>
+                                <label class="form-label mb-1"><?=lang('InventarioEquipamentos.disponivel')?></label>
                                 <div class="col">
                                     <input class="form-check-input" type="radio" name="disponivel" id="stateRadioEdit1" name="disponivel" value="1">
                                     <label class="form-check-label" for="stateRadioEdit1">
-                                        Sim
+                                        <?=lang('InventarioEquipamentos.yes')?>
                                     </label>
                                 </div>
                                 <div class="col">
                                     <input class="form-check-input" type="radio" name="disponivel" id="stateRadioEdit2" name="disponivel" value="0" checked>
                                     <label class="form-check-label" for="stateRadioEdit2">
-                                        Não
+                                        <?=lang('InventarioEquipamentos.no')?>
                                     </label>
                                 </div>
                             </div>
                         </div>
                         <div class="row row-cols-3 mb-2">
                             <div class="col-4">
-                                    <label class="form-label">Localização</label>
-                                    <input class="form-control" type="text" value="Mostrar Localização Aqui" id="editLocalizacao" name="localizacao" aria-label="Mostrar Localização Aqui">
+                                    <label class="form-label"><?=lang('InventarioEquipamentos.localizacao')?></label>
+                                    <input class="form-control" type="text" value="" id="editLocalizacao" name="localizacao" aria-label="">
                             </div>
                             <div class="col-4">
-                                <label class="form-label">Piso</label>
-                                <input class="form-control" type="text" value="Mostrar Piso Aqui" id="editPiso" name="piso" aria-label="Mostrar Piso Aqui">
+                                <label class="form-label"><?=lang('InventarioEquipamentos.piso')?></label>
+                                <input class="form-control" type="text" value="" id="editPiso" name="piso" aria-label="">
                             </div>
                             <div class="col-4">
-                                <label class="form-label">Sala</label>
-                                <input class="form-control" type="text" value="Mostrar Sala Aqui" id="editSala" name="sala" aria-label="Mostrar Sala Aqui">
+                                <label class="form-label"><?=lang('InventarioEquipamentos.sala')?></label>
+                                <input class="form-control" type="text" value="" id="editSala" name="sala" aria-label="">
                             </div>
                         </div>
                         <div class="row row-cols-2 mb-2">
                             <div class="col-6">
-                                <label class="form-label">Serviço</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.servico')?></label>
                                 <input class="form-control" id="editServico" name="servico" name="servico" type="text" value="" aria-label="">
                             </div>
                             <div class="col-3">
-                                <label class="form-label">Data de Aquisição</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.aquisicaoDtm')?></label>
                                 <input class="form-control" id="editAquisicaoDtm" name="aquisicaoDtm" type="datetime-local" >
                             </div>
                             <div class="col-3">
-                                <label class="form-label">Ultimo Update</label>
+                                <label class="form-label"><?=lang('InventarioEquipamentos.updatedDtm')?></label>
                                 <input class="form-control" id="editUpdatedDtm" name="updatedDtm" type="datetime-local" disabled readonly>
                             </div>
                         </div>
                         <div>
-                            <label for="exampleFormControlTextarea1" class="form-label">Nota</label>
+                            <label for="exampleFormControlTextarea1" class="form-label"><?=lang('InventarioEquipamentos.notas')?></label>
                             <textarea class="form-control" id="editNotas" name="notas" rows="3"></textarea>
                         </div>
                     </div>
                     
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><?=lang('InventarioEquipamentos.cancel')?></button>
+                        <button type="submit" class="btn btn-primary"><?=lang('InventarioEquipamentos.save')?></button>
                     </div>
                 </form>
             </div>
@@ -243,61 +261,93 @@ helper('form');
     </div>
 
     <table class="table table-striped" id="tbl">
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" > <?=lang('InventarioEquipamentos.add')?> </button>
         <thead>
             <tr>
-                <th><?=lang('InventarioEquipamentos.id')?></th>
-                <th><?=lang('InventarioEquipamentos.ativo')?></th>
-                <th><?=lang('InventarioEquipamentos.ni')?></th>
-                <th><?=lang('InventarioEquipamentos.sn')?></th>
-                <th><?=lang('InventarioEquipamentos.tipo')?></th>
-                <th><?=lang('InventarioEquipamentos.marca')?></th>
-                <th><?=lang('InventarioEquipamentos.modelo')?></th>
-                <th><?=lang('InventarioEquipamentos.localizacao')?></th>
-                <th><?=lang('InventarioEquipamentos.piso')?></th>
-                <th><?=lang('InventarioEquipamentos.sala')?></th>
-                <th><?=lang('InventarioEquipamentos.servico')?></th>
-                <th><?=lang('InventarioEquipamentos.disponivel')?></th>
-                <th><?=lang('InventarioEquipamentos.emprestimo_id')?></th>
-                <th><?=lang('InventarioEquipamentos.notas')?></th>
-                <th><?=lang('InventarioEquipamentos.aquisicaoDtm')?></th>
-                <th><?=lang('InventarioEquipamentos.updatedDtm')?></th>
-                <th>Actions</th>
+                <th scope="col"><?=lang('InventarioEquipamentos.id')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.ativo')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.ni')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.sn')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.tipo')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.marca')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.modelo')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.localizacao')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.piso')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.sala')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.servico')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.disponivel')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.emprestimo_id')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.notas')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.aquisicaoDtm')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.updatedDtm')?></th>
+                <th scope="col"><?=lang('InventarioEquipamentos.actions')?></th>
             </tr>
         </thead>
         <tbody class="table-group-divider">
-            <tr>
-                <td>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="col-md-10">
-                                <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" 
-                                    onclick="
-                                        getEditData(this);">
-                                <i class="bi bi-pencil-fill"></i></button>
-                            </div> 
-                        </div>
-                        <div class="col-md-1">
-                            <div class="col-md-10">
-                                <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal"><i class="bi bi-trash-fill"></i></button>
-                            </div> 
-                        </div>
-                    </div>
-                </td>
-            </tr>
+            <?php
+                if(!empty($equipamentos??null)):
+                    $i = 0;
+                    foreach($equipamentos as $equipamentos):?>
+                        <tr>
+                            <th scope="row"><?= $equipamentos['id']?></th>
+                            <?php if($equipamentos['ativo'] == 1):?>
+                                <td><?=lang('InventarioEquipamentos.active')?></td>
+                            <?php else: ?>
+                                <td><?=lang('InventarioEquipamentos.inactive')?></td>
+                            <?php endif; ?>
+                            <td><?= $equipamentos['ni']?></td>
+                            <td><?= $equipamentos['sn']?></td>
+                            <td><?= $equipamentos['tipo']?></td>
+                            <td><?= $equipamentos['marca']?></td>
+                            <td><?= $equipamentos['modelo']?></td>
+                            <td><?= $equipamentos['localizacao']?></td>
+                            <td><?= $equipamentos['piso']?></td>
+                            <td><?= $equipamentos['sala']?></td>
+                            <td><?= $equipamentos['servico']?></td>
+                            <?php if($equipamentos['disponivel'] == 1):?>
+                                <td><?=lang('InventarioEquipamentos.yes')?></td>
+                            <?php else: ?>
+                                <td><?=lang('InventarioEquipamentos.no')?></td>
+                            <?php endif; ?>
+                            <td><?= $equipamentos['emprestimo_id']?></td>
+                            <td><?= $equipamentos['notas']?></td>
+                            <td><?= $equipamentos['aquisicaoDtm']?></td>
+                            <td><?= $equipamentos['updatedDtm']?></td>
+                            <td>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="col-md-10">
+                                            <button type="button" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#editModal" 
+                                                onclick="
+                                                    getEditData(this, '<?php echo $equipamentos['id']?>');">
+                                            <i class="bi bi-pencil-fill"></i></button>
+                                        </div> 
+                                    </div>
+                                    <div class="col-md-1">
+                                        <div class="col-md-10">
+                                            <button type="button" class="btn btn-danger btn-sm" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" 
+                                                onclick="
+                                                    setDeleteID(this, '<?php echo $equipamentos['id']?>');">
+                                                <i class="bi bi-trash-fill"></i></button>
+                                        </div> 
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+            <?php   $i++;
+                    endforeach;
+                else:?>
+                    <tr>
+                        <td colspan='4'><?=lang('InventarioEquipamentos.no-data')?></td>
+                    </tr>
+        <?php   endif;?>
         </tbody>
-        <tfoot>
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addModal" > Adicionar </button>
-        </tfoot>
     </table>
 </section>
 
 <script>
     document.addEventListener("DOMContentLoaded", function(){
         let tbl = new DataTable('#tbl', {
-            ajax: {
-                url: '/api/IE/getData',
-                dataSrc: 'data',
-            },
             scrollX: true,
             layout: {
                 bottomEnd: {
@@ -305,27 +355,8 @@ helper('form');
                         boundaryNumbers: true
                     }
                 }
-            },
-            // columns: [
-            //     { "data" : 'id' },
-            //     { "data" : 'ativo' },
-            //     { "data" : 'ni' },
-            //     { "data" : 'sn' },
-            //     { "data" : 'tipo' },
-            //     { "data" : 'marca' },
-            //     { "data" : 'modelo' },
-            //     { "data" : 'localizacao' },
-            //     { "data" : 'piso' },
-            //     { "data" : 'sala' },
-            //     { "data" : 'servico' },
-            //     { "data" : 'disponivel' },
-            //     { "data" : 'emprestimo_id' },
-            //     { "data" : 'notas' },
-            //     { "data" : 'aquisicaoDtm' },
-            //     { "data" : 'updatedDtm' },
-            // ],
+            }
         });
-        console.log(tbl);
     });
 
     function convertDateFormat(inputDate) {
@@ -343,7 +374,7 @@ helper('form');
 
     const getItemById = async (id) => {
         try {
-            const response = await fetch(`/api/IE/getItemById/${id}`);
+            const response = await fetch(`/InventarioEquipamentos/getItemById/${id}`);
             if (!response.ok) {
                 throw new Error('Failed to fetch item');
             }
@@ -358,7 +389,9 @@ helper('form');
         }
     };
 
-
+    function setDeleteID(e, id) {
+        document.getElementById("deleteModalID").value = id;
+    }
 
     const getEditData = async (e, id) => {
         document.getElementById("editID").value = id;
@@ -375,26 +408,26 @@ helper('form');
         if(item.ni !== '' || null) {
             document.getElementById("editNI").value = item.ni;
         } else {
-            document.getElementById("editNI").value = "Sem Valor";
+            document.getElementById("editNI").value = "";
         }
 
         if(item.sn !== '' || null) {
             document.getElementById("editSN").value = item.sn;
         } else {
-            document.getElementById("editSN").value = "Sem Valor";
+            document.getElementById("editSN").value = "";
         }
 
         if(item.tipo !== '' || null) {
             if(item.tipo=='Portátil'){
-                document.getElementById("editTipo").value = '1';
+                document.getElementById("editTipo").value = 'Portátil';
             } else if(item.tipo=='Auscultadores'){
-                document.getElementById("editTipo").value = '2';
+                document.getElementById("editTipo").value = 'Auscultadores';
             } else if(item.tipo=='Computador'){
-                document.getElementById("editTipo").value = '3';
+                document.getElementById("editTipo").value = 'Computador';
             } else if(item.tipo=='Monitor'){
-                document.getElementById("editTipo").value = '4';
+                document.getElementById("editTipo").value = 'Monitor';
             } else if(item.tipo=='Webcam'){
-                document.getElementById("editTipo").value = '5';
+                document.getElementById("editTipo").value = 'Webcam';
             }
         } else {
             document.getElementById("editTipo").value = '';
@@ -403,37 +436,37 @@ helper('form');
         if(item.marca !== '' || null) {
             document.getElementById("editMarca").value = item.marca;
         } else {
-            document.getElementById("editMarca").value = "Sem Valor";
+            document.getElementById("editMarca").value = "";
         }
         
         if(item.modelo !== '' || null) {
             document.getElementById("editModelo").value = item.modelo;
         } else {
-            document.getElementById("editModelo").value = "Sem Valor";
+            document.getElementById("editModelo").value = "";
         }
 
         if(item.localizacao !== '' || null) {
             document.getElementById("editLocalizacao").value = item.localizacao;
         } else {
-            document.getElementById("editLocalizacao").value = "Sem Valor";
+            document.getElementById("editLocalizacao").value = "";
         }
 
         if(item.piso !== '' || null) {
             document.getElementById("editPiso").value = item.piso;
         } else {
-            document.getElementById("editPiso").value = "Sem Valor";
+            document.getElementById("editPiso").value = "";
         }
 
         if(item.sala !== '' || null) {
             document.getElementById("editSala").value = item.sala;
         } else {
-            document.getElementById("editSala").value = "Sem Valor";
+            document.getElementById("editSala").value = "";
         }
 
         if(item.servico !== '' || null) {
             document.getElementById("editServico").value = item.servico;
         } else {
-            document.getElementById("editServico").value = "Sem Valor";
+            document.getElementById("editServico").value = "";
         }
 
         if(item.disponivel == '1') {
@@ -445,18 +478,14 @@ helper('form');
         if(item.notas !== '' || null) {
             document.getElementById("editNotas").value = item.notas;
         } else {
-            document.getElementById("editNotas").value = "Sem Valor";
+            document.getElementById("editNotas").value = "";
         }
 
         // // document.getElementById("editEmprestimoID").value = "My value";
         document.getElementById("editAquisicaoDtm").value = convertDateFormat(item.aquisicaoDtm);
 
-        if(item.updatedDtm !== '' || null) {
-            document.getElementById("editUpdatedDtm").value = convertDateFormat(item.updatedDtm);
-        }
-        else {
-            document.getElementById("editUpdatedDtm").placeholder = 'No date available'
-        }
+        const currentdate = new Date().toISOString();
+        document.getElementById("editUpdatedDtm").value = currentdate;
     }
 </script>
 

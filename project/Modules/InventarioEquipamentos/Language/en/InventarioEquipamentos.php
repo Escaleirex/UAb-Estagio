@@ -2,16 +2,8 @@
 
 return [
     'home' => 'Home',
-    'list' => 'List',
-    'register' => 'Register',
-    'inventory' => 'Inventory',
-    'hardware-list'=>'Hardware List',
+    'list' => 'List of devices',
     'no-data' => 'No Data Was Found',
-    'placeholder-name' => 'Write here the name of the device',
-    'placeholder-description' => 'Write here a small description about this registration',
-    'submit' => 'Submit',
-    'required-name' => 'Name is required',
-    'required-date' => 'Date is required',
     'register-device' => 'Register Device',
 
     # List Fields
@@ -31,9 +23,25 @@ return [
     'notas' => 'Notes',
     'aquisicaoDtm' => 'Date of Aquisition',
     'updatedDtm' => 'Last Updated',
+    'actions'=> 'Actions',
 
     'yes' => 'Yes',
     'no' => 'No',
     'active' => 'Active',
     'inactive' => 'Inactive',
+    'cancel'=> 'Cancel',
+    'save'=> 'Save',
+    'confirm'=> 'Confirm',
+    'remove'=> 'Remove',
+    'close'=> 'Close',
+    'add'=> 'Add',
+    'areyousureremove'=> 'Are you sure you want to delete this item?',
+    
+    'portatil'=> 'Laptop',
+    'auscultadores'=> 'Headphones',
+    'computador'=> 'Desktop',
+    'monitor'=> 'Monitor',
+    'webcam'=> 'Webcam',
+    
+    'edititem'=> 'Edit Item',
 ];

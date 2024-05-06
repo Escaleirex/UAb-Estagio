@@ -1,18 +1,10 @@
 <?php 
 
 return [
-    'home' => 'Início',
-    'list' => 'Lista',
-    'register' => 'Registar',
-    'inventory' => 'Inventário',
-    'hardware-list'=>'Lista de Hardware',
-    'no-data' => 'Nenhum Registo foi encontrado',
-    'placeholder-name' => 'Escreve aqui o nome do item',
-    'placeholder-description' => 'Escreve aqui uma breve descrição do registo',
-    'submit' => 'Submeter',
-    'required-name' => 'O Nome é obrigatório',
-    'required-date' => 'A data é obrigatória',
-    'register-device' => 'Registar Dispositivo',
+    'home' => 'Home',
+    'list' => 'Lista de Equipamentos',
+    'no-data' => 'Não foram encontrados dados.',
+    'register-device' => 'Registar Equipamento',
 
     # List Fields
     'id' => 'ID',
@@ -27,13 +19,29 @@ return [
     'sala' => 'Sala',
     'servico' => 'Serviço',
     'disponivel' => 'Disponível',
-    'emprestimo_id' => 'ID de Emprestimo',
+    'emprestimo_id' => 'ID do Emprestimo',
     'notas' => 'Notas',
     'aquisicaoDtm' => 'Data de Aquisição',
-    'updatedDtm' => 'Ultimo Update',
+    'updatedDtm' => 'Ultima Modificação',
+    'actions'=> 'Ações',
 
     'yes' => 'Sim',
     'no' => 'Não',
     'active' => 'Ativo',
     'inactive' => 'Inativo',
+    'cancel'=> 'Cancelar',
+    'save'=> 'Guardar',
+    'confirm'=> 'Confirmar',
+    'remove'=> 'Remover',
+    'close'=> 'Fechar',
+    'add'=> 'Adicionar',
+    'areyousureremove'=> 'Tem a certeza que quer remover este item?',
+    
+    'portatil'=> 'Portátil',
+    'auscultadores'=> 'Auscultadores',
+    'computador'=> 'Computador',
+    'monitor'=> 'Monitor',
+    'webcam'=> 'Webcam',
+    
+    'edititem'=> 'Editar Equipamento',
 ];

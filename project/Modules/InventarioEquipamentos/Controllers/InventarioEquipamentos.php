@@ -67,21 +67,7 @@ class InventarioEquipamentos extends BaseController {
         } catch (\Exception $e) {
             return ['error' => 'Database query error: ' . $e->getMessage()];
         }
-    }
-
-    public function getData(){
-        try {
-            $db = \Config\Database::connect();
-            $query = $db->query('SELECT * FROM tbl_equipamentos LIMIT 10');
-            $result = $query->getResult();
-            return $this->response
-                        ->setStatusCode(200)
-                        ->setContentType('application/json')
-                        ->setBody(json_encode(['data'=>$result]));
-        } catch (\Exception $e) {
-            return ['error' => 'Database query error: ' . $e->getMessage()];
-        }
-    }
+    }        
 
     public function updateItemForm(){
         $validation2 = \Config\Services::validation();
@@ -100,12 +86,11 @@ class InventarioEquipamentos extends BaseController {
             // 'sala' => 'required',
             // 'aquisicaoDtm' => 'required|valid_date[Y-m-d H:i:s]', // Adjust date format if needed
         ]);
-
-        $model = new EquipamentosModel();
     
         if ($validation2->withRequest($this->request)->run()) {
             try {
                 $validatedData2 = $this->request->getPost(['ativo', 'ni', 'sn', 'tipo', 'marca', 'modelo', 'disponivel', 'localizacao', 'piso', 'sala', 'aquisicaoDtm', 'notas', 'id']); // Include 'id' field
+                $model = new EquipamentosModel();
                 $model->update($validatedData2['id'], $validatedData2);
                 return redirect()->to('/InventarioEquipamentos/list');
             } catch (\Exception $e) {
@@ -113,10 +98,33 @@ class InventarioEquipamentos extends BaseController {
             }
         } else {
             die(print_r($validation2->getErrors(), true));
+            $model = new EquipamentosModel();
             $equipamentos = $model->findAll();
             return view('Modules\InventarioEquipamentos\Views\ViewInvEquiList', [
                 'equipamentos' => $equipamentos,
                 'validation' => $validation2,
+            ]);
+        }
+    }
+
+    public function deleteForm(){
+        $validation3 = \Config\Services::validation();
+        $validation3->setRules([
+            'id'=> 'required',
+        ]);
+
+        if ($validation3->withRequest($this->request)->run()) {
+            $validatedData3 = $this->request->getPost('id');
+            $model = new EquipamentosModel();
+            $model->delete($validatedData3);
+            return redirect()->to('/InventarioEquipamentos/list');
+        } else {
+            die(print_r($validation3->getErrors(), true));
+            $model = new EquipamentosModel();
+            $equipamentos = $model->findAll();
+            return view('Modules\InventarioEquipamentos\Views\ViewInvEquiList', [
+                'equipamentos' => $equipamentos,
+                'validation' => $validation3,
             ]);
         }
     }
