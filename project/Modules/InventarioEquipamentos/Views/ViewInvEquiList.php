@@ -14,7 +14,7 @@ helper('form');
                     <h1 class="modal-title fs-5" id="deleteModalLabel"><?=lang('InventarioEquipamentos.remove')?></h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form id="deleteForm" role="form" method="post" action="deleteForm">
+                <form id="deleteForm" role="form" method="post" action="<?= url_to('equipamentos-deleteform'); ?>">
                     <div class="modal-body">
                         <input type="hidden" id="deleteModalID" name="id">
                         <?=lang('InventarioEquipamentos.areyousureremove')?>
@@ -38,7 +38,7 @@ helper('form');
                 <?php if(isset($validation)): ?>
                     <?php echo $validation->listErrors(); ?>
                 <?php endif; ?>
-                <form id="addForm" role="form" method="post" action="submitForm">
+                <form id="addForm" role="form" method="post" action="<?= url_to('equipamentos-submitform'); ?>">
                 <div class="p-3 mb-3">
                         <div class="row row-cols-4 mb-2">
                             <div class="col-md-3">
@@ -54,7 +54,7 @@ helper('form');
                                 <select class="form-select" name="tipo" aria-label="">
                                     <option value="Portátil" selected><?=lang('InventarioEquipamentos.portatil')?></option>
                                     <option value="Auscultadores"><?=lang('InventarioEquipamentos.auscultadores')?></option>
-                                    <option value="Computador"><?=lang('InventarioEquipamentos.desktop')?></option>
+                                    <option value="Computador"><?=lang('InventarioEquipamentos.computador')?></option>
                                     <option value="Monitor"><?=lang('InventarioEquipamentos.monitor')?></option>
                                     <option value="Webcam"><?=lang('InventarioEquipamentos.webcam')?></option>
                                 </select>
@@ -152,7 +152,7 @@ helper('form');
                 <?php if(isset($validation2)): ?>
                     <?php echo $validation2->listErrors(); ?>
                 <?php endif; ?>
-                <form id="editForm" role="form" method="post" action="updateItemForm">
+                <form id="editForm" role="form" method="post" action="<?= url_to('equipamentos-updateitemform'); ?>">
                 <div class="p-3 mb-3">
                         <div class="row row-cols-4 mb-2">
                             <input class="form-control" id="editID" type="hidden" value="" aria-label="" name="id">
@@ -396,7 +396,7 @@ helper('form');
     const getEditData = async (e, id) => {
         document.getElementById("editID").value = id;
         const itemRequest = await getItemById(id);
-        const item = itemRequest[0];
+        const item = itemRequest;
         console.log(item);
 
         if(item.ativo == '1' || null) {
@@ -418,17 +418,7 @@ helper('form');
         }
 
         if(item.tipo !== '' || null) {
-            if(item.tipo=='Portátil'){
-                document.getElementById("editTipo").value = 'Portátil';
-            } else if(item.tipo=='Auscultadores'){
-                document.getElementById("editTipo").value = 'Auscultadores';
-            } else if(item.tipo=='Computador'){
-                document.getElementById("editTipo").value = 'Computador';
-            } else if(item.tipo=='Monitor'){
-                document.getElementById("editTipo").value = 'Monitor';
-            } else if(item.tipo=='Webcam'){
-                document.getElementById("editTipo").value = 'Webcam';
-            }
+            document.getElementById("editTipo").value = item.tipo;
         } else {
             document.getElementById("editTipo").value = '';
         }

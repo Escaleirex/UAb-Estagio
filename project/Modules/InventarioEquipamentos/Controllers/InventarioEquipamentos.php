@@ -60,9 +60,8 @@ class InventarioEquipamentos extends BaseController {
 
     public function getItemById($id){
         try {
-            $db = \Config\Database::connect();
-            $query = $db->query('SELECT * FROM tbl_equipamentos WHERE id = ?', [$id]);
-            $result = $query->getResult();
+            $model = new EquipamentosModel();
+            $result = $model->where(EquipamentosModel::FIELD_ID, $id)->first();
             return json_encode($result);
         } catch (\Exception $e) {
             return ['error' => 'Database query error: ' . $e->getMessage()];

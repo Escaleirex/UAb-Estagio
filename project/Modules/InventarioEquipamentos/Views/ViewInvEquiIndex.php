@@ -4,7 +4,7 @@
 
 <section>
 
-    <h1>Lorem Ipsum de exemplo:</h1>
+    <h1>Lorem Ipsum:</h1>
 
     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus euismod in lacus id tincidunt. Proin diam neque, dapibus vitae justo eget, maximus porttitor turpis. Maecenas vulputate cursus egestas. Aliquam aliquet urna a ante scelerisque scelerisque. Mauris sapien metus, consequat at posuere ac, vulputate sed metus. Pellentesque sit amet lorem finibus, ultrices quam at, commodo massa. Suspendisse consectetur nisi urna, et pharetra purus viverra quis. Nullam velit neque, feugiat et interdum quis, bibendum at eros. Ut blandit arcu varius, condimentum nulla at, aliquam quam. Ut euismod, est ac eleifend porttitor, nibh dolor tempus lectus, nec porttitor ligula massa nec tortor. Nulla et dapibus velit, a pellentesque elit. Suspendisse eu mi mollis, semper mauris a, pellentesque felis. Maecenas lacinia, nunc a feugiat rhoncus, enim eros congue odio, eget malesuada risus lacus in erat. Donec sodales scelerisque nibh.</p>
     <p>Ut nec lacus cursus, consectetur purus vitae, mattis sem. Sed mollis interdum nisi, at blandit sem tempor in. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Quisque eget libero ex. Suspendisse a velit dapibus, porta tellus quis, sollicitudin orci. Nunc quis malesuada urna. Aenean tincidunt mi eu fringilla aliquet. Curabitur tristique ac libero quis blandit. Nulla eu rhoncus arcu. In eu dignissim diam, aliquam condimentum turpis. Nulla at tempor nisl. Nullam at odio eget augue rhoncus ullamcorper. Curabitur pretium tincidunt velit nec posuere. Nulla facilisi. Sed eu enim id diam finibus posuere. Phasellus sit amet mauris pellentesque lacus bibendum volutpat non iaculis mauris.</p>
